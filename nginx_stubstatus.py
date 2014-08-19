@@ -17,6 +17,7 @@ import sys
 import time
 import requests
 
+## tcollector library - 'tcollector/libs'
 from collectors.lib import utils
 
 COLLECTION_INTERVAL = 15
