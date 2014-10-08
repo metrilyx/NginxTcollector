@@ -29,7 +29,13 @@ def main():
 	utils.drop_privileges()
 
 	while True:
-		response =  requests.get(STATUS_URL)
+
+		try:
+			response =  requests.get(STATUS_URL)
+		except :
+			time.sleep(COLLECTION_INTERVAL)
+			continue
+			
 		timestamp = int(time.time())
 		lines = [ l.strip() for l in response.text.split("\n") ][:-1]
 
