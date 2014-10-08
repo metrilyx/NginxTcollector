@@ -33,7 +33,7 @@ def main():
 		try:
 			response =  requests.get(STATUS_URL)
 		except requests.exceptions.RequestException as error:
-			print error
+			print "%s error retrieving %s %s" %(METRIC_BASENAME, STATUS_URL, error)
 			time.sleep(COLLECTION_INTERVAL)
 			continue
 			
