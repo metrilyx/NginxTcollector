@@ -41,15 +41,15 @@ def main():
 
 		print "%s.conn.active %d %s" %(METRIC_BASENAME, timestamp, lines[0].split(":")[-1].strip())
 
-		(cAccepted, cHandled, cHandles) = ( i for i in lines[2].split() if i != "")
-		print "%s.conn.accepted %d %s" %(METRIC_BASENAME, timestamp, cAccepted)
+		(cAccepts, cHandled, cRequests) = ( i for i in lines[2].split() if i != "")
+		print "%s.conn.accepts %d %s" %(METRIC_BASENAME, timestamp, cAccepts)
 		print "%s.conn.handled %d %s" %(METRIC_BASENAME, timestamp, cHandled)
-		print "%s.conn.handles %d %s" %(METRIC_BASENAME, timestamp, cHandles)
+		print "%s.requests %d %s" %(METRIC_BASENAME, timestamp, cRequests)
 
-		(_, reqReads, _, reqWrites, _, reqWaiting)= (c.strip() for c in lines[-1].split())
-		print "%s.request %d %s state=reading" %(METRIC_BASENAME, timestamp, reqReads)
-		print "%s.request %d %s state=writing" %(METRIC_BASENAME, timestamp, reqWrites)
-		print "%s.request %d %s state=waiting" %(METRIC_BASENAME, timestamp, reqWaiting)
+		(_, conReads, _, conWrites, _, conWaiting)= (c.strip() for c in lines[-1].split())
+		print "%s.conn.state %d %s type=reading" %(METRIC_BASENAME, timestamp, conReads)
+		print "%s.conn.state %d %s type=writing" %(METRIC_BASENAME, timestamp, conWrites)
+		print "%s.conn.state %d %s type=waiting" %(METRIC_BASENAME, timestamp, conWaiting)
 
 		sys.stdout.flush()
 		time.sleep(COLLECTION_INTERVAL)
