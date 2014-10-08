@@ -32,7 +32,8 @@ def main():
 
 		try:
 			response =  requests.get(STATUS_URL)
-		except :
+		except requests.exceptions.RequestException as error:
+			print error
 			time.sleep(COLLECTION_INTERVAL)
 			continue
 			
